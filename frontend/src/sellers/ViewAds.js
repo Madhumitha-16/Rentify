@@ -53,7 +53,8 @@ console.log(ads)
     <>  
     <div className='header2-img content-post '>
     <h2>Having a new home for rent?</h2>
-    <Button onClick={goToPost} className='button-post'>Post AD</Button>
+    <h6>Post your ads and find a good tenant</h6>
+    <Button onClick={goToPost} className='button-post mt-3'>Post AD</Button>
     </div> 
     {loading ? (
         <div className='center-align-mt0 mb-5'>

@@ -1,11 +1,14 @@
 import { Button, Form, InputNumber, Select } from 'antd';
 import axios from 'axios';
-import { SearchOutlined } from '@ant-design/icons';
+import { SearchOutlined,ClearOutlined } from '@ant-design/icons';
 import { Pagination, Spin  } from 'antd';
 import React, { useContext, useEffect, useState } from 'react';
 import CardDetails from '../home/CardDetails';
 import { UserContext } from '../UserContext';
+import { toast } from 'react-toastify';
+import 'react-toastify/dist/ReactToastify.css';
 const { Option } = Select;
+
 
 const Filter = () => {
   const { user } = useContext(UserContext);
@@ -59,6 +62,11 @@ const Filter = () => {
     setPageSize(size);
   };
 
+  const handleClearFilters = () => {
+  form.resetFields(); // Reset form fields
+  getAllAds(); // Reset ads list
+};
+
   const handleFilterChanges = (values) => {
     console.log('Form values:', values);
     form.validateFields()
@@ -77,10 +85,12 @@ const Filter = () => {
               }
               return ad;
             });
+            
             setFilteredAds(adsWithImages); // Update filtered ads
             setTotalItems(response.data.length);
           })
           .catch(error => {
+            toast.error("Error:Please Reload ")
             console.error('Error:', error);
           });
       })
@@ -134,7 +144,9 @@ const Filter = () => {
           </div>
           <div className='col-md-2'>
             <Form.Item>
-              <Button shape='circle' icon={<SearchOutlined />} htmlType="submit" />
+              <Button  shape='circle' icon={<SearchOutlined />} htmlType="submit" />
+              <Button className='ml-3' icon={<ClearOutlined />} onClick={handleClearFilters} >Clear</Button>
+
             </Form.Item>
           </div>
         </div>
@@ -145,7 +157,9 @@ const Filter = () => {
   </div>
 ) : (
       <div className='ad-area row mb-5'>
+      
         <div><p className='m-3'>Results</p></div>
+        
         {filteredAds.slice((currentPage - 1) * pageSize, currentPage * pageSize).map((note) => (
           <div className='center-align-mt1 col-md-3 mb-5' key={note.id}>
             <CardDetails data={note} />

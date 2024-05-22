@@ -1,13 +1,17 @@
-import React, { useState } from 'react'
+import React, { useContext, useState } from 'react'
 import { EditOutlined, DeleteOutlined,EyeOutlined } from '@ant-design/icons';
 import {Button, Card, Modal, Form, Input, Radio, Select  } from 'antd';
 import axios from 'axios';
 import noImg from '../images/no_img.png'
+import { toast } from 'react-toastify';
+import 'react-toastify/dist/ReactToastify.css';
+import { UserContext } from '../UserContext';
 
 const { Meta } = Card;
 const { Option } = Select;
 
 const CardAds = ({ data }) => {
+    const {user} = useContext(UserContext)
     const [isModalVisible, setIsModalVisible] = useState(false);
     const [form] = Form.useForm();
   console.log(data)
@@ -25,8 +29,11 @@ const CardAds = ({ data }) => {
               .then(response => {
                 console.log('Ad details updated successfully:', response.data);
                 setIsModalVisible(false);
+                toast.success("Details Updated!")
+                window.location.reload();
               })
               .catch(error => {
+                toast.error('Error updating ad details')
                 console.error('Error updating ad details:', error);
               });
           })
@@ -41,9 +48,12 @@ const CardAds = ({ data }) => {
     const handleDelete = () => {
         axios.delete(`https://full-stack-virid.vercel.app/delete/${data.id}`)
           .then(response => {
+            window.location.reload();
+            toast.success('Deleted Successfully!')
             console.log('Ad deleted successfully:', response.data);
           })
           .catch(error => {
+            toast.error('Error while deleting')
             console.error('Error deleting ad:', error);
           });
       };
@@ -61,6 +71,7 @@ const CardAds = ({ data }) => {
        style={{ width: '100%', height: '200px', objectFit: 'cover' }}
      />
    }
+   
    actions={[
        <Button  shape="circle" icon={<EditOutlined />} onClick={showModal}></Button>,
        <Button danger shape="circle" icon={<DeleteOutlined />}onClick={handleDelete}></Button>,
@@ -81,7 +92,7 @@ const CardAds = ({ data }) => {
  </Card>
  <Modal
    title="Edit Details"
-   visible={isModalVisible}
+   open={isModalVisible}
    onOk={handleOk}
    onCancel={handleCancel}
  >

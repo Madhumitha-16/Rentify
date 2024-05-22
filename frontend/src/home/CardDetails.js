@@ -6,7 +6,8 @@ import { UserContext } from '../UserContext';
 import noImg from '../images/no_img.png'
 import { useNavigate } from 'react-router-dom';
 import { encrypt } from '../cryptoUtils';
-
+import { toast } from 'react-toastify';
+import 'react-toastify/dist/ReactToastify.css';
 const { Meta } = Card;
 
 const CardDetails = ({data }) => {
@@ -44,10 +45,10 @@ const handleNavigation = () => {
     if(liked===false){
       axios.delete(`https://full-stack-virid.vercel.app/api/like/${data?.id}`, { userId, adId: data?.id, liked: !liked })
       .then(response => {
-        console.log('Ad deleted successfully:', response.data);
+        console.log('successfully:', response.data);
       })
       .catch(error => {
-        console.error('Error deleting ad:', error);
+        console.error('Error ad:', error);
       });
     }
   };
@@ -57,14 +58,17 @@ const handleNavigation = () => {
     if(interested ===true) {
     axios.post('https://full-stack-virid.vercel.app/api/interest', { userId, adId: data?.id, liked: !liked })
       .then(response => {
+        toast.success("Request sent")
         console.log('status updated:', response.data);
       })
       .catch(error => {
+        toast.error("Error sending request")
         console.error('Error updating like status:', error);
       });}
     if(interested===false){
       axios.delete(`https://full-stack-virid.vercel.app/api/interest/${data?.id}`, { userId, adId: data?.id, liked: !liked })
       .then(response => {
+
         console.log('Ad deleted successfully:', response.data);
       })
       .catch(error => {
@@ -77,7 +81,7 @@ const handleNavigation = () => {
     <Card
     
     style={{
-      width: 320,
+      width: 360,
     }}
     cover={
       <img

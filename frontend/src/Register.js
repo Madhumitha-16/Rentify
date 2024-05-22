@@ -5,6 +5,8 @@ import { EyeOutlined, EyeInvisibleOutlined } from '@ant-design/icons';
 import axios from 'axios';
 import { useNavigate } from 'react-router-dom';
 import { UserContext } from './UserContext';
+import { toast } from 'react-toastify';
+import 'react-toastify/dist/ReactToastify.css';
 
 const Register = () => {
     const navigate = useNavigate();
@@ -59,16 +61,19 @@ console.log(formValues)
     };
 
     const handleSubmit = (e) => {
+        setLoading(true);
         e.preventDefault();
         if (authMode === "signin") {
             axios.post('https://full-stack-virid.vercel.app/signin', formValues)
                 .then(response => {
                     setUserId(response.data?.user?.id);
                     setLoading(false);
+                    toast.success("Login Success!")
                     setUser(response.data);
                 })
                 .catch(error => {
                     setLoading(false);
+                    toast.error("Invalid Credentials")
                     console.error('Error during sign-in', error);
                 });
         } else {
@@ -88,8 +93,10 @@ console.log(formValues)
                     setAuthMode("signin");
                     setLoading(false);
                     navigate('/register');
+                    toast.success("Registered Successfully")
                 })
                 .catch(error => {
+                    toast.success("Error: Try Again")
                     console.error('Error during sign-up', error);
                     setLoading(false);
 
@@ -150,7 +157,6 @@ console.log(formValues)
                                 className='btn btn-primary' htmlType='submit'
           type="primary"
           loading={loading}
-          onClick={() => setLoading(true)}
         >
           Login
         </Button>
@@ -293,7 +299,7 @@ console.log(formValues)
                                 className='btn btn-primary' htmlType='submit'
           type="primary"
           loading={loading}
-          onClick={() => setLoading(true)}
+         
         >
           Register
         </Button>

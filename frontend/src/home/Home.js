@@ -6,6 +6,7 @@ import HomeBuyer from '../buyers/Home';
 import HomeSeller from '../sellers/Home';
 import { UserContext } from '../UserContext';
 import { Outlet } from 'react-router-dom';
+import NavbarHome from '../buyers/NavBarHome'
 
 const Home = () => {
   const { user} = useContext(UserContext);
@@ -17,7 +18,8 @@ const Home = () => {
 
   return (
     <>
-          {user?.user?.role === 1 ? <HomeBuyer /> : user?.user?.role === 2 ? <HomeSeller /> : <div>Invalid user role</div>}
+          {user?.user?.role === 1 ? <HomeBuyer /> : user?.user?.role === 2 ? <HomeSeller /> : <div><NavbarHome />
+          <h4 className='center-align'>Invalid user role: Register Again</h4></div>}
           <main>
         <Outlet />
       </main>

@@ -7,11 +7,16 @@ import noImg from '../images/no_img.png'
 
 import { useParams } from 'react-router-dom';
 import CardAds from '../home/CardAds';
-import { Button } from 'antd';
+import { Button,Spin } from 'antd';
 import Footer from '../Footer';
+import { toast } from 'react-toastify';
+import 'react-toastify/dist/ReactToastify.css';
+import CardDetails from '../home/CardDetails';
 
 const ViewAd = () => {
     const [ads, setAds] = useState({});
+    const [loading, setLoading] = useState(true);
+    const [loading1, setLoading1] = useState(true);
     const [similarData, setSimilarData] = useState([]);
     const adId = useParams();
     
@@ -38,7 +43,10 @@ const ViewAd = () => {
         return ad;
       });
       setSimilarData(simData);
+      setLoading1(false)
+
     }catch (error) {
+        setLoading1(false)
         console.error('Error fetching ads:', error);
       }
     };
@@ -47,9 +55,14 @@ const ViewAd = () => {
     
     axios.post('https://full-stack-virid.vercel.app/api/interest', { userId:adId.user_id, adId: adId.id })
       .then(response => {
+       
+        toast.success("Request sent")
         console.log('status updated:', response.data);
       })
       .catch(error => {
+       
+
+        toast.error("Error sending request")
         console.error('Error updating like status:', error);
       });
    
@@ -72,9 +85,10 @@ const ViewAd = () => {
             }
             return ad;
           });
-
+setLoading(false);
           setAds(adsWithImages);
         }catch (error) {
+            setLoading(false);
             console.error('Error fetching ads:', error);
           }
         };
@@ -82,7 +96,11 @@ const ViewAd = () => {
     <div>
         <NavbarBuyer />
         <h2 className='ml-3'>Property Details </h2>
-
+        {loading ? (
+        <div className='center-align-mt0 mb-5'>
+  <Spin className='mb-5' size="large"><p className='mt-6'>Please wait..</p></Spin>
+  </div>
+) : (
         <div className='row center-align ad-area'>
 
         <div className='col-md-6'>
@@ -109,17 +127,19 @@ const ViewAd = () => {
             <h3>Owner Details</h3>
             <div ><p>Name: {ads[0]?.first_name}  {ads[0]?.last_name}</p></div>
             <div><MailOutlined /> {ads[0]?.email}  <p></p><PhoneOutlined />{" "}{ads[0]?.phone_no}</div>
-            <Button className='button' onClick={handleInterest}>Show Interest</Button>
+            <Button className='btn btn-primary mt-3' onClick={handleInterest}>Show Interest</Button>
         </div> 
     
         </div>
         </div>
         </div>
+    )}
         <div className='row mb-5 '>
     <div><h3 className='ml-3 mb-3'>Similar Ads of the Owner</h3></div>
+    
     {similarData.map((d) => (
         <div className='col-md-3 ml-6 mb-5'>
-    <CardAds key={d.id} data={d} />
+    <CardDetails key={d.id} data={d} />
     </div>
 ))}
         </div>

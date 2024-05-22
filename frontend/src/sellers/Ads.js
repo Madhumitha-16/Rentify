@@ -4,6 +4,8 @@ import { UserContext } from '../UserContext';
 import Footer from '../Footer';
 import { Button } from 'antd';
 import NavbarSeller from './NavBarSeller';
+import { toast } from 'react-toastify';
+import 'react-toastify/dist/ReactToastify.css';
 
 const Ads = () => {
   const [selectedFile, setSelectedFile] = useState(null);
@@ -84,9 +86,11 @@ const handleFileChange = (e) => {
         }
       });
 setLoading(false)
+toast.success('Ad posted successfully');
       console.log('Note created:', response.data);
     } catch (error) {
         setLoading(false)
+        toast.error('Error posting ad');
 
       console.error('Error creating note:', error);
     }
@@ -324,8 +328,6 @@ setLoading(false)
   {fileName && <p>Selected file: {fileName}</p>}
   </div>
 </div>
-      
-   
           <div className="d-grid gap-2 mt-3 mb-3">
           <Button
         className='btn btn-primary' htmlType='submit'

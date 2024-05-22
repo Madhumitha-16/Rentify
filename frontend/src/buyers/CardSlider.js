@@ -24,9 +24,7 @@ const CardSlider = () => {
         setCurrentSlide((prevSlide) => (prevSlide + 1) % slides.length);
 
     };
-    const handleSlideClick = (index) => {
-     
-    };
+
 
     return (
         <div className='ml-6 mb-5'>

@@ -169,6 +169,12 @@ color:#fff;
   background-color: #f37b36;
   border: none;
 }
+.button-post:hover{
+    width: 150px;
+    color: #ffffff!important;
+    background-color: #f77226 !important;
+    border: none;
+  }
 .content-post{
   display: flex;
   flex-direction: column;
@@ -217,5 +223,7 @@ color:#fff;
   .custom-file-upload:hover {
     background-color: #d65e19 ;
   }
-  
+  .btn.btn-primary:hover{
+    color: #fff !important;
+  }
   

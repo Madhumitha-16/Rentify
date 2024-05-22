@@ -38,9 +38,9 @@ const HomeBuyer = () => {
    
         <div class="header container m-5">
         <div class="row justify-content-start">
-            <div class="content col-lg-5 col-md-6 col-12">
-                <h1 className='typewrite'><HomeOutlined /> Rentify </h1>
-                <p className='typewrite'>Where Renting Meets Simplicity!</p>
+            <div class="content ml-3 col-lg-5 col-md-6 col-12">
+                <h1 className='typewrite fo'><HomeOutlined /> Rentify  </h1>
+                <p className='typewrite po '>Where Renting Meets Simplicity!</p>
                 <h3>Choose your dream home in </h3>
                 <h3>your <span className='typewrite'>{typewrite}</span></h3>
                 <Button className='button' icon={<RightOutlined />} iconPosition="end" onClick={()=>navigate("/search")}>Explore More</Button>

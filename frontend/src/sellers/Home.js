@@ -15,7 +15,8 @@ const HomeSeller = ({user_id}) => {
         <div class="header container m-5">
         <div class="row justify-content-start">
             <div class="content col-lg-5 col-md-6 col-12">
-                <h1 className='typewrite'>Rentify - Where Renting Meets Simplicity</h1>
+                <h1 className='typewrite fo'><HomeOutlined />Rentify </h1>
+                <p className='typewrite po'>Where Renting Meets Simplicity</p> 
                 <h5>Let the world know about your property and</h5> 
                 <h5>find trusted buyers through Rentify! </h5> 
                 <Button className='button' onClick={()=>navigate('/post-ad')} icon={<RightOutlined />} iconPosition="end">Post Ad</Button>
@@ -35,15 +36,15 @@ const HomeSeller = ({user_id}) => {
     <div className='text-center'>
     <HomeOutlined className='mb-2' style={{fontSize:"30px"}}/>
     </div>
-    <h5>Discover your perfect home today!</h5>
-    <p>Begin your search for the perfect home today! With our extensive listings and user-friendly search tools, finding your dream home has never been easier. Start exploring now and let us help you find your ideal living space.</p>
+    <h5>Discover your perfect tenant today!</h5>
+    <p>Begin your search for the perfect tenant today! With our extensive listings and user-friendly search tools, rent your home has never been easier. Start exploring now and let us help you find your ideal buyer.</p>
     </div>
     <div class="col  mt-3 box-4">
     <div className='text-center'>
     <SearchOutlined className='mb-2 text-center' style={{fontSize:"30px"}}/>
     </div>
-    <h5>Find a home that suits your needs!</h5>
-    <p>Embark on your journey to finding the ideal home that fits your every need. Whether you're seeking a cozy apartment in the heart of the city or a serene villa nestled in the countryside, we have a diverse range of properties waiting to be discovered. </p>
+    <h5>Find tenants on your need!</h5>
+    <p>Embark on your journey to finding the ideal tenant that fits your every need. Whether you're having a cozy apartment in the heart of the city or a serene villa nestled in the countryside, we have a diverse range of buyers waiting to be discover. </p>
     </div>
     <div class="col mt-3 box-3">
     <div className='text-center'>

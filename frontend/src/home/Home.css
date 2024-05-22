@@ -205,6 +205,12 @@ color:#fff;
 .footer p{
   font-size: 14px;
 }
+.fo{
+  font-size: 88px;
+}
+.po{
+  font-size: 28px;
+}
 .ant-spin-dot-item {
     background-color: orange !important;
   }

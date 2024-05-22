@@ -1,5 +1,5 @@
 import React, { useContext, useEffect, useState } from 'react'
-import NavbarSeller from './NavbarSeller'
+import NavbarSeller from './NavBarSeller'
 import Footer from '../Footer'
 import CardRequest from '../home/CardRequest';
 import axios from 'axios';

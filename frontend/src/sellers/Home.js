@@ -1,5 +1,5 @@
 import React from 'react'
-import NavbarSeller from './NavbarSeller'
+import NavbarSeller from './NavBarSeller'
 import { Button } from 'antd'
 import { HomeOutlined,SearchOutlined,UsergroupAddOutlined,RightOutlined } from '@ant-design/icons';
 import home from '../images/home.png'

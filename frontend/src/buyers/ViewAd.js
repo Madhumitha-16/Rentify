@@ -1,5 +1,5 @@
 import React, { useEffect, useState } from 'react'
-import NavbarBuyer from './NavbarBuyer'
+import NavbarBuyer from './NavBarBuyer'
 import axios from 'axios';
 import {MailOutlined, PhoneOutlined } from '@ant-design/icons';
 

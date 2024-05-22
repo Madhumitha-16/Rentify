@@ -12,8 +12,8 @@ import Filter from './Filter';
 import CardSlider from './CardSlider';
 import { UserContext } from '../UserContext';
 import Footer from '../Footer';
-import NavbarBuyer from './NavbarBuyer';
-import NavbarHome from './NavbarHome';
+import NavbarBuyer from './NavBarBuyer';
+import NavbarHome from './NavBarHome';
 import ScrollData from '../home/ScrollData';
 import { useNavigate } from 'react-router-dom';
 

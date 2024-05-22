@@ -1,8 +1,8 @@
 import React, { useContext } from 'react'
 import Filter from './Filter'
-import NavbarBuyer from './NavbarBuyer'
+import NavbarBuyer from './NavBarBuyer'
 import Footer from '../Footer'
-import NavbarHome from './NavbarHome';
+import NavbarHome from './NavBarHome';
 
 import { UserContext } from '../UserContext'
 

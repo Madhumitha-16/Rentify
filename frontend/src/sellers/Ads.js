@@ -2,8 +2,8 @@ import axios from 'axios';
 import React, { useContext, useEffect, useState } from 'react';
 import { UserContext } from '../UserContext';
 import Footer from '../Footer';
-import NavbarSeller from './NavbarSeller';
 import { Button } from 'antd';
+import NavbarSeller from './NavBarSeller';
 
 const Ads = () => {
   const [selectedFile, setSelectedFile] = useState(null);

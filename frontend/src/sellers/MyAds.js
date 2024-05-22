@@ -1,5 +1,5 @@
 import React from 'react'
-import NavbarSeller from './NavbarSeller'
+import NavbarSeller from './NavBarSeller'
 import ViewAds from './ViewAds'
 import Footer from '../Footer'
 

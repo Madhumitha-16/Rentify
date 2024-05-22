@@ -1,5 +1,5 @@
 import React, { useContext, useEffect, useState } from 'react'
-import NavbarBuyer from './NavbarBuyer'
+import NavbarBuyer from './NavBarBuyer'
 import Footer from '../Footer'
 import { Spin } from 'antd'
 import axios from 'axios'

@@ -1,16 +1,12 @@
 import axios from 'axios';
 import React, { useContext, useEffect, useState } from 'react';
 import { UserContext } from '../UserContext';
-import Footer from '../Footer';
-import { Button } from 'antd';
 import NavbarSeller from './NavBarSeller';
-import { toast } from 'react-toastify';
-import 'react-toastify/dist/ReactToastify.css';
+import Footer from '../Footer';
 
 const Ads = () => {
   const [selectedFile, setSelectedFile] = useState(null);
-  const [loading, setLoading] = useState(false);
-  const [fileName, setFileName] = useState('');
+
     const { user } = useContext(UserContext);
     console.log(user)
     const [formValues, setFormValues] = useState({
@@ -31,11 +27,7 @@ const Ads = () => {
   
 console.log(formValues,user)
 const handleFileChange = (e) => {
-    const file = e.target.files[0];
-    if (file) {
-      setFileName(file.name);
-    }
- 
+  setSelectedFile(e.target.files[0]);
 };
 
     useEffect(() => {
@@ -85,13 +77,9 @@ const handleFileChange = (e) => {
           'Content-Type': 'multipart/form-data'
         }
       });
-setLoading(false)
-toast.success('Ad posted successfully');
+
       console.log('Note created:', response.data);
     } catch (error) {
-        setLoading(false)
-        toast.error('Error posting ad');
-
       console.error('Error creating note:', error);
     }
   };
@@ -128,11 +116,11 @@ toast.success('Ad posted successfully');
           </div>
           <div className="row">
             <div className="col-md-6">
-              <label >Type</label>
+              <label>Type</label>
               <br />
               <input
                 type="radio"
-                className="input-radio "
+                className="input-radio"
                 value="Rent"
                 name="type"
                 checked={formValues.type === 'Rent'}
@@ -259,7 +247,7 @@ toast.success('Ad posted successfully');
           </div>
           <div className="form-group mt-3 row">
             <label>Amenities</label>
-            <div className="form-check col-md-3">
+            <div className="form-check col-md-2 ml-2">
               <input
                 type="checkbox"
                 className="form-check-input"
@@ -272,7 +260,7 @@ toast.success('Ad posted successfully');
                 Water
               </label>
             </div>
-            <div className="form-check col-md-3">
+            <div className="form-check col-md-2">
               <input
                 type="checkbox"
                 className="form-check-input"
@@ -298,7 +286,7 @@ toast.success('Ad posted successfully');
                 Furnished
               </label>
             </div>
-            <div className="form-check col-md-3">
+            <div className="form-check col-md-2">
               <input
                 type="checkbox"
                 className="form-check-input"
@@ -311,32 +299,32 @@ toast.success('Ad posted successfully');
                 Lift
               </label>
             </div>
+            <div className="form-check col-md-2">
+              <input
+                type="checkbox"
+                className="form-check-input"
+                id="hospital"
+                name="Hospital"
+                checked={formValues.amenities.includes('Lift')}
+                onChange={handleCheckboxChange}
+              />
+              <label className="form-check-label" htmlFor="hospital">
+                Hospital
+              </label>
+            </div>
           </div>
-    <div className='row'>
-          <div className="mt-3 col-md-4">
-  <label htmlFor="file-upload" className="custom-file-upload">
-    Choose File
-  </label>
-  <input
-    id="file-upload"
-    type="file"
-    onChange={handleFileChange}
-    className="file-input"
-  />
-  </div>
-   <div className="mt-4  col-md-8">
-  {fileName && <p>Selected file: {fileName}</p>}
-  </div>
-</div>
+          
+          <div className="form-group mt-3 row">
+          <div className="col-md-3"><label>Upload Images</label></div>
+          <div className="col-md-8">
+            <p>(* Choose image less than 10kb)</p>
+            </div>
+            <input type="file" onChange={handleFileChange}  className="mt-1 col-md-6" />
+          </div>
           <div className="d-grid gap-2 mt-3 mb-3">
-          <Button
-        className='btn btn-primary' htmlType='submit'
-          type="primary"
-          loading={loading}
-          onClick={() => setLoading(true)}
-        >
-          Submit
-        </Button>
+            <button type="submit" className="btn btn-primary">
+              Submit
+            </button>
           </div>
           
         </div>

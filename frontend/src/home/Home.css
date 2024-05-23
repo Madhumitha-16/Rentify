@@ -217,6 +217,9 @@ color:#fff;
   .mt-6{
     margin-top: 70px;
   }
+  .ml-2{
+    margin-left: 10px;
+  }
  
   .file-input{
     display: none; 
